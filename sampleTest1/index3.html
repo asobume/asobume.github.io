@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>sample test</title>
+    <!-- <link rel="stylesheet" href="css/styles.css"> -->
+    <style>
+        /* * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        } */
+        body {
+            margin: 0;
+            background: #000;
+        }
+
+        .page-wrapper {
+            width: 1000px;
+            margin: 0 auto;
+            /* background: #fff; */
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        main {
+            /* width: 100%; */
+        }
+
+        .boxes {
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+        }
+
+        .subtitle {
+            margin: 60px auto;
+            width: 200px;
+            height: 60px;
+            background: rgb(196, 176, 176);
+        }
+
+        .box.image-box {
+            width: 50%;
+            height: 400px;
+            pointer-events: none;
+        }
+
+        .box.twitter-box {
+            width: 50%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .box.twitter-box .twitter-tweet {
+            cursor: pointer;
+        }
+
+        .box.twitter-box .twitter-tweet:hover {
+            pointer-events: none;
+        }
+
+        .box.twitter-box .twitter-tweet p:hover {
+            pointer-events: none;
+        }
+
+        .box.twitter-box .twitter-tweet a:hover {
+            pointer-events: none;
+        }
+
+        .twitter-tweet.twitter-tweet-rendered {
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;
+        }
+
+        /* custom 3d */
+
+        .box3d-wrapper {
+            /* margin: 100px auto; */
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
+        }
+
+        .box3d {
+            /* perspective: 1600px; */
+            perspective: 1200px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box3d .item-wrapper {
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            width: 80%;
+            height: 80%;
+            transition: 0.2s;
+        }
+
+        .box3d .item-content {
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box3d .item-content .bird-wrapper {
+            width: 50%;
+            height: 50%;
+            -webkit-transform: translateZ(100px);
+            transform: translateZ(100px);
+            position: relative;
+        }
+
+        .box3d .item-content .bird-wrapper {
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+
+        .box3d .item-content .bird-wrapper .bird-image {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: url(img/test4.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            -webkit-transform: translateZ(120px);
+            transform: translateZ(120px);
+            z-index: 2;
+            opacity: 1;
+        }
+
+        .box3d .item-content .bird-wrapper .bird-blur-image {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: url(img/test4.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+
+            -webkit-transform: translateZ(70px);
+            transform: translateZ(70px);
+            z-index: 1;
+            transform: scale(1.2, 1.2);
+            opacity: 0.8;
+            -webkit-filter: grayscale(100%) blur(14px);
+            -moz-filter: grayscale(100%) blur(14px);
+            -ms-filter: grayscale(100%) blur(14px);
+            filter: grayscale(100%) blur(14px);
+        }
+
+        .box3d .item-content .bird-wrapper .lighting {
+            -webkit-transform: translateZ(160px);
+            transform: translateZ(160px);
+            /* transform: scale(1.6, 1.6); */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            /* border-radius: 50%; */
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0) 100%);
+            /* background: rgb(114, 82, 82); */
+        }
+
+        .box3d .lighting {
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transform: translateZ(160px);
+            transform: translateZ(160px);
+            transform: scale(0.3, 0.3);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            /* border-radius: 50%; */
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0) 100%);
+            /* background: rgb(114, 82, 82); */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <header>
+            <div class="header-inner"></div>
+        </header>
+        <main>
+            <div class="container">
+
+                <div class="boxes">
+                    <div class="subtitle"></div>
+                </div>
+                <div class="boxes">
+                    <div class="subtitle"></div>
+                </div>
+
+                <div class="boxes">
+                    <div class="box image-box">
+                        <div class="box3d-wrapper">
+                            <!-- <div class="box3d-inner"> -->
+                            <div class="box3d">
+                                <div class="lighting"></div>
+                                <div class="item-wrapper">
+
+
+                                    <div class="item-content">
+                                        <!-- <div class="lighting"></div> -->
+                                        <div class="bird-wrapper">
+                                            <!-- <div class="lighting"></div> -->
+                                            <div class="bird-image"></div>
+                                            <div class="bird-blur-image"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- box3d -->
+                            <!-- </div> -->
+                        </div>
+                    </div>
+
+
+                    <div class="box twitter-box">
+                        <blockquote class="twitter-tweet">
+                            <p lang="ja" dir="ltr">hello literally everyone</p>&mdash; Twitter
+                            (@Twitter) <a
+                                href="https://twitter.com/Twitter/status/1445078208190291973?ref_src=twsrc%5Etfw">October
+                                4,
+                                2021</a>
+                        </blockquote>
+                    </div>
+                </div><!-- boxes -->
+                <div class="boxes">
+                    <div class="subtitle"></div>
+                </div>
+        </main>
+        <footer>
+            <div class="footer-inner"></div>
+        </footer>
+    </div>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+
+    <script>
+        (function () {
+
+            // var card = $(".card");
+            const card = $(".item-wrapper");
+            const light = $(".lighting");
+            const lightingRgb = '255,255,255';
+            const lightGradient = '0.32';
+
+            $(".boxes").on("mousemove", function (e) {
+                // const posX = e.clientX;
+                // const posY = e.clientY;
+                const posX = e.pageX;
+                const posY = e.pageY;
+                const targetX = $(".bird-wrapper").offset().left;
+                const targetY = $(".bird-wrapper").offset().top;
+                // console.log("posX:", posX)
+                // console.log("posY:", posY)
+                // console.log("targetX:", targetX)
+                // console.log("targetY:", targetY)
+
+                const ax = -((targetX / 2) - posX / 2) / 40;
+                const ay = ((targetY / 2) - posY / 2) / 30;
+                const x = -((targetX / 2) - posX / 2);
+                const y = ((targetY / 2) - posY / 2);
+                const deg = Math.atan2(y, x) * (180 / Math.PI) + 24;
+
+                card.attr("style", "transform: rotateY(" + ax + "deg) rotateX(" + ay + "deg);-webkit-transform: rotateY(" + ax + "deg) rotateX(" + ay + "deg);-moz-transform: rotateY(" + ax + "deg) rotateX(" + ay + "deg)");
+
+                light.attr("style",
+                    "transform: rotateY(" + (-ax / 2) + "deg) rotateX(" + (-ay / 2) + "deg) translateZ(160px) scale(0.3,0.3);-webkit-transform: rotateY(" + (-ax / 2) + "deg) rotateX(" + (-ay / 2) + "deg) translateZ(160px) scale(0.3,0.3); -moz-transform: rotateY(" + (-ax / 2) + "deg) rotateX(" + (-ay / 2) + "deg) translateZ(160px) scale(0.3,0.3);");
+
+                // card.css('background', 'linear-gradient(' + deg + 'deg, rgba(' + lightingRgb + ',' + lightGradient + ') 0%, rgba(' + lightingRgb + ',0) 100%)');
+
+            });
+
+            $(".boxes").on("mouseleave", function (e) {
+                const ax = 0;
+                const ay = 0;
+
+                card.attr("style",
+                    "transform: rotateY(" + ax + "deg) rotateX(" + ay + "deg);-webkit-transform: rotateY(" + ax + "deg) rotateX(" + ay + "deg);-moz-transform: rotateY(" + ax + "deg) rotateX(" + ay + "deg)"
+                );
+
+                light.removeAttr('style');
+            });
+        })();
+        // $(function() {
+
+        // });
+    </script>
+</body>
+
+</html>
