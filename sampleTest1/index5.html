@@ -157,6 +157,16 @@
             // document.getElementById('innerhtml').innerHTML = '<link rel="stylesheet" type="text/css" href=“pc.css">';
         }
     </script>
+    
+    <script>
+        // iPhone iPod Android の判別 本来はhead内に記入
+        if ((
+            navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
+            document.write('<link rel="stylesheet" type="text/css" href="sp.css">');
+         } else {
+            document.write('<link rel="stylesheet" type="text/css" href="pc.css">');
+         }
+    </script>
 </body>
 
 </html>
