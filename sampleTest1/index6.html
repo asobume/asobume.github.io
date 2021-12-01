@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+        #space {
+            background-color: aqua;
+            height: 130vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="space"></div>
+    <div id="target">target</div>
+    <script>
+        function alertShow(entries) {
+            if (entries[0].intersectionRatio == 0) {
+                return;
+            }
+            else {
+                alert("show now")
+                observer.unobserve(targetItem);
+            }
+        };
+
+        const targetItem = document.getElementById("target");
+        const options = {
+            threshold: 1
+            // threshold: [0, 0.5, 1.0]
+            // [0, 0.5, 1.0]と指定->「入ってきたとき」「真ん中まできたとき」「完全に入ったとき」の3回コールバック関数
+        };
+
+        const observer = new IntersectionObserver(alertShow, options);
+        observer.observe(targetItem);//監視対象を設定
+    </script>
+
+</body>
+
+</html>
