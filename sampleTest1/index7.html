@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>sample7</title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="noindex,nofollow">
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .bnr {
+            display: inline-block;
+            cursor: pointer;
+            margin-top: 1em;
+            border-radius: 8px;
+            background: url(img/test1.png) center / cover no-repeat;
+        }
+
+        .bnr img {
+            border-radius: inherit;
+            vertical-align: middle;
+            transition: opacity 1.3s;
+        }
+
+        .bnr:hover img {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <a class="bnr"><img src="img/test2.png" alt="" width="300" height="100"></a>
+</body>
+
+</html>
