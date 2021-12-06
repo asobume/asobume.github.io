@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>sampleScrollPositionTest</title>
+    <meta name="description" content="description">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <style>
+        body {
+            margin: 0 auto;
+        }
+
+        .container {
+            margin: 0 auto;
+            width: 1366px;
+            height: 1200px;
+            background: #978052;
+            padding-top: 100px;
+        }
+
+        .area-outer {
+            margin: 0 auto;
+            width: 1200px;
+            /* height: 2800px; */
+            background: #ffffff;
+
+        }
+
+        .area {
+            margin: 0 auto;
+            width: 1200px;
+            height: 700px;
+            background: #68645e;
+            overflow: scroll;
+        }
+
+        .area-inner {
+            margin: 0 auto;
+            width: 1200px;
+            height: 2800px;
+            background: #646361;
+            overflow: scroll;
+        }
+
+        .box-wrapper {
+            width: 1200px;
+            height: 700px;
+            background: #bdbbb8;
+            box-sizing: border-box;
+            border: 1px solid #ffffff;
+            position: relative;
+        }
+
+        .item1-img {
+            width: 380px;
+            height: 700px;
+            position: absolute;
+            top: 0px;
+            left: 100px;
+            background: url(img/test4.png);
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: contain;
+        }
+
+        .item2-img {
+            width: 380px;
+            height: 678px;
+            position: absolute;
+            top: 0px;
+            left: 100px;
+            background: url(img/test2.png);
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: contain;
+        }
+
+        .item3-img {
+            width: 380px;
+            height: 700px;
+            position: absolute;
+            top: 0px;
+            left: 100px;
+            background: url(img/test4.png);
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: contain;
+        }
+
+        .item4-img {
+            width: 380px;
+            height: 700px;
+            position: absolute;
+            top: 0px;
+            left: 100px;
+            background: url(img/test2.png);
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: contain;
+        }
+
+        #wr1 {
+            background: url(img/test1.png);
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: cover;
+        }
+
+        #wr2 {
+            background: url(img/test3.png);
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: cover;
+        }
+
+        #wr3 {
+            background: url(img/test1.png);
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: cover;
+        }
+
+        #wr4 {
+            background: url(img/test3.png);
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: cover;
+        }
+
+        .item1-txt,
+        .item2-txt,
+        .item3-txt,
+        .item4-txt {
+            width: 380px;
+            height: 200px;
+            position: absolute;
+            top: 200px;
+            right: 100px;
+            background: orange;
+        }
+
+        /*フェード&右からフェード*/
+
+        .fadeIn {
+            animation-name: fadeInAnime;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInAnime {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fadeRight {
+            animation-name: fadeRightAnime;
+            animation-duration: 0.5s;
+            animation-fill-mode: forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeRightAnime {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* スクロールをしたら出現する要素にはじめに透過0を指定　*/
+
+        .fadeRightTrigger {
+            opacity: 0;
+        }
+
+        .area {
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            border: solid 6px #3d3c3b;
+            box-sizing: border-box;
+        }
+
+        .area-outer {
+            /* overflow: hidden; */
+            /* width: auto;
+            height: auto; */
+            width: 1200px;
+            height: 700px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left-upper,
+        .left-down,
+        .right-upper,
+        .right-down {
+            width: 200px;
+            height: 200px;
+            border: solid 6px #3d3c3b;
+            box-sizing: border-box;
+            background: #978052;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 3;
+
+        }
+
+        .left-upper {
+            top: -150px;
+            left: -150px;
+        }
+
+        .left-down {
+            bottom: -150px;
+            left: -150px;
+        }
+
+        .right-upper {
+            top: -150px;
+            right: -150px;
+        }
+
+        .right-down {
+            bottom: -150px;
+            right: -150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div class="container">
+        <div class="area-outer">
+            <figure class="left-upper"></figure>
+            <figure class="left-down"></figure>
+            <figure class="right-upper"></figure>
+            <figure class="right-down"></figure>
+            <div class="area">
+                <div class="area-inner">
+                    <div class="box-wrapper" id="wr1">
+                        <div class="item1-img"></div>
+                        <div class="item1-txt fadeRightTrigger"></div>
+                    </div>
+                    <div class="box-wrapper" id="wr2">
+                        <div class="item2-img"></div>
+                        <div class="item2-txt fadeRightTrigger"></div>
+                    </div>
+                    <div class="box-wrapper" id="wr3">
+                        <div class="item3-img"></div>
+                        <div class="item3-txt fadeRightTrigger"></div>
+                    </div>
+                    <div class="box-wrapper" id="wr4">
+                        <div class="item4-img"></div>
+                        <div class="item4-txt fadeRightTrigger"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.area').scroll(function () {
+                var scroll = $(this).scrollTop();
+                console.log(scroll);//0 - 2100(=2800-700)
+
+
+                $('.item1-img').css({
+                    backgroundPosition: '0px ' + (0 + scroll) + 'px'
+                });
+
+                $('#wr1').css({
+                    backgroundPosition: '0px ' + (0 + scroll) + 'px'
+                });
+
+                $('.item2-img').css({
+                    backgroundPosition: '0px ' + (-700 + scroll) + 'px'
+                });
+                $('#wr2').css({
+                    backgroundPosition: '0px ' + (-840 + scroll * 1.2) + 'px'
+                });
+
+                $('.item3-img').css({
+                    backgroundPosition: '0px ' + (-1400 + scroll) + 'px'
+                });
+                $('#wr3').css({
+                    backgroundPosition: '0px ' + (-1680 + scroll * 1.2) + 'px'
+                });
+
+                $('.item4-img').css({
+                    backgroundPosition: '0px ' + (-2100 + scroll) + 'px'
+                });
+                $('#wr4').css({
+                    backgroundPosition: '0px ' + (-2520 + scroll * 1.2) + 'px'
+                });
+            });
+
+
+            function fadeAnime() {
+
+                $('.fadeRightTrigger').each(function () {
+                    var elemPos = $('.item1-txt').offset().top - 150;
+                    var scroll = $('.area').scrollTop();
+                    var windowHeight = $('.area').height();
+                    if (scroll >= elemPos - windowHeight) {
+                        $('.item1-txt').addClass('fadeRight');
+                    } else {
+                        $('.item1-txt').removeClass('fadeRight');
+                    }
+                });
+
+                $('.fadeRightTrigger').each(function () {
+                    var elemPos = $('.item2-txt').offset().top + 700 - 150;
+                    var scroll = $('.area').scrollTop();
+                    var windowHeight = $('.area').height();
+                    if (scroll >= elemPos - windowHeight) {
+                        $('.item2-txt').addClass('fadeRight');
+                    } else {
+                        $('.item2-txt').removeClass('fadeRight');
+                    }
+                });
+
+                $('.fadeRightTrigger').each(function () {
+                    var elemPos = $('.item3-txt').offset().top + 1400 - 150;
+                    var scroll = $('.area').scrollTop();
+                    var windowHeight = $('.area').height();
+                    if (scroll >= elemPos - windowHeight) {
+                        $('.item3-txt').addClass('fadeRight');
+                    } else {
+                        $('.item3-txt').removeClass('fadeRight');
+                    }
+                });
+
+                $('.fadeRightTrigger').each(function () {
+                    var elemPos = $('.item4-txt').offset().top + 2100 - 150;
+                    var scroll = $('.area').scrollTop();
+                    var windowHeight = $('.area').height();
+                    if (scroll >= elemPos - windowHeight) {
+                        $('.item4-txt').addClass('fadeRight');
+                    } else {
+                        $('.item4-txt').removeClass('fadeRight');
+                    }
+                });
+            }
+
+            $('.area').scroll(function () {
+                fadeAnime();
+            });
+
+        });
+
+    </script>
+</body>
+
+</html>
