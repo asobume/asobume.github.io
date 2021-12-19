@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>samplevideotest</title>
+    <meta name="description" content="description">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <style>
+        #play {
+            width: 100px;
+            height: 50px;
+            background: olive;
+        }
+
+        #targetVideo {
+            width: 800px;
+            height: 540px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="varea">
+        <!-- <video id="targetVideo" src="media/sample.mp4"></video> -->
+        <!-- サムネイルの設定 -->
+        <!-- <video id="targetVideo"  src="media/sample.mp4" poster="thumnail.jpg"></video> -->
+
+        <!-- ios10以降 HTMLページ上で再生 -->
+        <!-- <video id="targetVideo" src="media/sample.mp4" playsinline autoplay muted></video> -->
+
+        <!-- 右クリック禁止=間接的な操作無効 -->
+        <!-- <video id="targetVideo"  src="media/sample.mp4" oncontextmenu="return false;"></video> -->
+
+        <!-- サムネイル -> 再生 -> サムネイル　※右クリック禁止 ※ミュート ※インライン再生 -->
+        <video id="targetVideo" src="media/sample.mp4" playsinline muted poster="img/thum1.png"
+            oncontextmenu="return false;"></video>
+
+        <!-- videoタグの再生 -->
+        <div id="play">Play</div>
+
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            // const video = $('#targetVideo').get(0);
+            const video = document.querySelector('video');
+
+            $('#play').click(function () {
+                video.play();
+            });
+
+            video.addEventListener('ended', function () {
+                video.load();
+                video.autoplay = false;
+            }, false);
+
+            // const targetVideo = document.getElementById('#targetVideo')
+
+            // targetVideo.src = "img/sample2.mp4";
+        });
+
+
+
+    </script>
+</body>
+
+</html>
