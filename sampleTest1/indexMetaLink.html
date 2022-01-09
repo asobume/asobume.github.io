@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>sampletypotest</title>
+    <meta name="description" content="description">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <h1>test</h1>
+    <p>使用中の端末：<span id="Terminal"></span></p>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        let tarminal = document.getElementById('Terminal')
+        let msg = ""
+        let ut = navigator.userAgent;
+
+        if (ut.indexOf('iPhone') > 0 || ut.indexOf('iPod') > 0 || ut.indexOf('Android') > 0 && ut.indexOf('Mobile') > 0) {
+            msg = "SmartPhone";
+        } else if (ut.indexOf('iPad') > 0 || ut.indexOf('Android') > 0) {
+            msg = "Tablet";
+        } else {
+            msg = "Personal Computer";
+            let cssFilesPathArray = [];
+            cssFilesPathArray.push("CSSFilePath1");
+            cssFilesPathArray.push("CSSFilePath2");
+            for (let i = 0; i < cssFilesPathArray.length; i++) {
+                const setCSS = document.createElement("link");
+                setCSS.setAttribute("rel", "stylesheet");
+                setCSS.setAttribute("type", "text/css");
+                setCSS.setAttribute("href", cssFilesPathArray[i]);
+                document.getElementsByTagName("head")[0].appendChild(setCSS);
+            }
+        }
+
+        tarminal.textContent = msg
+    </script>
+</body>
+
+</html>
