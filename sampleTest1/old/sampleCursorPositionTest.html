@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>sampleCursorPositionTest</title>
+    <meta name="description" content="description">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <style>
+        body {
+            margin: 0 auto;
+        }
+
+        .container {
+            margin: 0 auto;
+            width: 800px;
+            height: 1200px;
+            background: #978052;
+            padding-top: 100px;
+        }
+
+        .area {
+            margin: 0 auto;
+            width: 400px;
+            height: 600px;
+            background: #68645e;
+        }
+
+
+        #cursor {
+            position: fixed;
+            background: #fff;
+            border-radius: 10px;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+
+            z-index: 2;
+            pointer-events: none;
+            opacity: 0;
+
+            transition: transform 0.1s;
+        }
+
+        .xlink:nth-child(1) {
+            margin-left: 120px;
+            width: 80px;
+            height: 30px;
+            background-color: chocolate;
+        }
+
+        .xlink:nth-child(1) a {
+            display: inline-block;
+        }
+
+        .xlink:nth-child(2) {
+            margin: 40px 120px;
+            width: 180px;
+            height: 130px;
+            background-color: rgb(47, 50, 99);
+            /* pointer-events: none; */
+        }
+
+        .xlink:nth-child(3) {
+            margin: 40px 120px;
+            width: 180px;
+            height: 30px;
+            background-color: rgb(47, 99, 77);
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div class="container">
+        <div class="area">
+            <div class="xlink"><a href="#">test1</a></div>
+            <div class="xlink"><a href="#">test2</a></div>
+            <div class="xlink"><a href="#">test3</a></div>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(".area").on('mousemove', function (e) {
+            let cursor = $("#cursor");
+            cursor.css({
+                "opacity": "1",
+                "top": e.pageY + "px",
+                "left": e.pageX + "px"
+            });
+        });
+
+        $(".area").on('mouseout', function (e) {
+            let cursor = $("#cursor");
+            cursor.css({
+                "opacity": "0",
+                "top": "-100px",
+                "left": "-100px"
+            });
+        });
+
+    </script>
+</body>
+
+</html>
