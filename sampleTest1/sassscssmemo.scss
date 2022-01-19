@@ -1,0 +1,187 @@
+sass&scssメモ
+
+/ 変数：データにつけるラベル
+// データ型（数値、文字列、真偽、色、リスト）
+// + - * /
+
+$baseFontSize: 14px;
+
+#main {
+    width: 90%;
+    p {
+        font-size: $baseFontSize;
+        .sub {
+            font-size: $baseFontSize - 2px;
+        }
+    }
+}
+
+$imgDir: "../img/";
+
+#main {
+    width: 90%;
+    background: url("#{$imgDir}bg.png");
+    p {
+        font-size: #{12 + 12}px;
+    }
+}
+
+$brandColor: rgba(255,0,0,0.9);
+
+// lighten darken
+
+#main {
+    width: 90%;
+    p {
+        color: lighten($brandColor, 30%);
+        font-size: 14px;
+    }
+
+// 条件分岐 @if 条件 | @else iff 条件 | @else
+// == != < > <= >=
+
+$debugMode: true;
+$x: 10;
+
+#main {
+    @if $debugMode == true {
+        color: red;
+    } @else {
+        color: green;
+    }
+    p {
+        @if $x > 20 { color: yellow; }
+    }
+}
+
+// ループ
+// @for
+// @while
+
+// .fs10 { font-size: 10px; }
+
+@for $i from 10 through 14 {
+    .fs#{$i} { font-size: #{$i}px; }
+}
+
+$i: 10;
+@while $i <= 14 {
+    .fs#{$i} { font-size: #{$i}px; }
+    $i: $i + 1;
+}
+
+// リスト（似たようなデータをまとめて管理）
+
+// $animals: cat, dog, tiger;
+
+@each $animal in $animals {
+    .#{$animal}-icon { background: url("#{$animal}.png"); }
+}
+
+@each $animal in cat, dog, tiger {
+    .#{$animal}-icon { background: url("#{$animal}.png"); }
+}
+
+// 関数1
+
+$totalWidth: 940px;
+$columnCount: 10;
+
+@function getColumnWidth($width, $count) {
+    // $columnWidthを計算
+    @return $columnWidth;
+}
+
+.grid {
+    float: left;
+    width: getColumnWidth($totalWidth, $columnCount);
+}
+
+// 関数
+
+$totalWidth: 940px;
+$columnCount: 10;
+
+@function getColumnWidth($width, $count) {
+    // $columnWidthを計算
+    $padding: 10px;
+    $columnWidth: floor(($width - ($padding * ($count - 1))) / $count);
+    @debug $columnWidth;
+    @return $columnWidth;
+}
+
+.grid {
+    float: left;
+    width: getColumnWidth($totalWidth, $columnCount);
+}
+
+// main.scssファイル
+
+@import "settings";
+@import "functions";
+
+.grid {
+    float: left;
+    width: getColumnWidth($totalWidth, $columnCount);
+}
+
+// _settings.scssファイル
+$totalWidth: 940px;
+$columnCount: 10;
+
+// _fanctions.scssファイル
+
+@function getColumnWidth($width, $count) {
+    // $columnWidthを計算
+    $padding: 10px;
+    $columnWidth: floor(($width - ($padding * ($count - 1))) / $count);
+    @debug $columnWidth;
+    @return $columnWidth;
+}
+
+// mixin
+@mixin round {
+    border-radius: 4px;
+}
+.label {
+    font-size: 12px;
+    @include round;
+}
+
+@mixin round($radius) {
+    border-radius: $radius;
+}
+.label {
+    font-size: 12px;
+    @include round(10px);
+}
+
+@mixin round($radius:4px) {
+    border-radius: $radius;
+}
+.label {
+    font-size: 12px;
+    @include round();
+}
+
+// @extend (継承)
+
+// .errorMsg
+// .warningMsg
+
+.msg {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 4px;
+    color: white;
+}
+
+.errorMsg {
+    @extend .msg;
+    background: red;
+}
+
+.warningMsg {
+    @extend .msg;
+    background: orange;
+}
