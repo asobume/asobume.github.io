@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './css/TestDragScroll.css';
+import './TestDragScroll.css';
 import {useState} from "react";
 
 function TestDragScroll() {
