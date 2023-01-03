@@ -1,0 +1,5 @@
+docker run --rm  -it --mount type=bind,src=$(pwd)/abccd,dst=/tmp abcpython/abc:0.01  /bin/bash
+
+docker run --rm  -it --mount type=bind,src=$(pwd)/abccd,dst=/tmp abcpython/abc:0.01 python ./tmp/test20230103.py
+
+docker run --rm  -it --mount type=bind,src=$(pwd)/abccd,dst=/tmp --workdir /tmp abcpython/abc:0.01 python test20230103.py
